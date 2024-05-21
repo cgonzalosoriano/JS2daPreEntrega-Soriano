@@ -49,7 +49,14 @@ function calcularEnvio(tipoEnvio) {
 }
 
 function calcularInteres(cuotas) {
-    return cuotas > 1 ? 1.5 : 1;
+    if (cuotas <= 1) {
+        return 1; 
+    }
+
+    const tasaInteresAnual = 0.60;
+    const tasaInteresMensual = tasaInteresAnual / 12;
+    const interesTotal = tasaInteresMensual * cuotas;
+    return 1 + interesTotal;
 }
 
 function calcularTotalFinal(tipoEnvio, cuotas) {
@@ -70,3 +77,18 @@ function realizarPago() {
     document.getElementById('totalAPagar').innerText = '$' + totalFinal.toFixed(2);
     document.getElementById('valorCuota').innerText = '$' + (totalFinal / cuotas).toFixed(2);
 }
+
+document.getElementById('irAPagar').addEventListener('click', function() {
+    const tipoEnvio = document.getElementById('tipoEnvio').value;
+    const cuotas = parseInt(document.getElementById('cuotas').value);
+    const total = calcularTotalFinal(tipoEnvio, cuotas);
+
+    localStorage.setItem('checkoutData', JSON.stringify({
+        carrito: JSON.parse(localStorage.getItem('carrito')),
+        tipoEnvio,
+        cuotas,
+        total
+    }));
+
+    window.location.href = 'checkout.html';
+});

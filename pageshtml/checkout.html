@@ -1,10 +1,10 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/main.css">
-    <link rel="shortcut icon" href="../media/favicon.png" type="image/x-icon">
-    <title>Black Rider | Carrito de Compras</title>
+    <title>Checkout</title>
 </head>
 <body>
     <header>
@@ -19,7 +19,7 @@
                     <li><a href="../index.html"><img src="../media/Logo BlackRider.png" alt="Logo"></a></li>
                 </div>
                 <div class="cart">
-                    <li id="cart_icon"><a href="./pageshtml/cart.html"><img src="../media/Cart.png" alt="Cart"></a></li>
+                    <li id="cart_icon"><a href="../pageshtml/cart.html"><img src="../media/Cart.png" alt="Cart"></a></li>
                     <li id="mail_icon"><a href=""><img src="../media/mail.png" alt="contact"></a></li>
                     <li><a href=""><img src="../media/Instagram.png" alt="Instagram"></a></li>
                     <li><a href=""><img src="../media/tiktok.png" alt="tiktok"></a></li>
@@ -28,27 +28,34 @@
             </ul>
         </nav>
     </header>
+    <main class="checkout-main">
+    <h1 class="checkout-h1">Checkout</h1>
+    <div>
+        <label for="tipoCliente">Tipo de Cliente:</label>
+        <select id="tipoCliente">
+            <option value="consumidorFinal">Consumidor Final</option>
+            <option value="responsableInscripto">Responsable Inscripto</option>
+        </select>
+    </div>
 
-    <main class="cart-main">
-    <Section class="cart">
-        <h1 class="carth1">Tu Carrito</h1>
-        <div id="listaCarrito"></div>
-    <select id="tipoEnvio">
-        <option value="local">Retiro Local (Sin Costo)</option>
-        <option value="domicilio">Envío a Domicilio ($1500)</option>
-    </select>
-        <label for="cuotas">Número de Cuotas:</label>
-        <input type="number" id="cuotas" min="1" value="1">
-        <h2>SubTotal a Pagar (s/imp): <span id="totalAPagar">$0</span></h2>
-        <h3>Valor por Cuota: <span id="valorCuota">$0</span> por mes</h3>
+    <div>
+        <label for="metodoPago">Método de Pago:</label>
+        <select id="metodoPago">
+            <option value="elegir">Elegir...</option>
+            <option value="reembolso">Pago Contra Reembolso</option>
+            <option value="transferencia">Transferencia Bancaria</option>
+            <option value="tarjeta">Tarjeta de Débito/Crédito</option>
+            <option value="rapipago">Rapipago</option>
+        </select>
+        <div id="instruccionesPago"></div>
+    </div>
 
-    <button id="irAPagar">Ir a pagar</button>
-    </Section>   
-    <script src="../carrito.js"></script>
-    <script>
-        document.getElementById('irAPagar').addEventListener('click', function() {
-            window.location.href = 'checkout.html';
-        });
-    </script>
+    <div id="detallePago"></div>
+
+    <button id="pagar">Pagar</button>
+    
+
+    <script src="../checkout.js"></script>
+    </main>
 </body>
 </html>
